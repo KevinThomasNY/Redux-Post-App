@@ -1,27 +1,31 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
-import './index.css'
-import {store} from './app/store'
-import { Provider } from 'react-redux'
-import {createBrowserRouter, RouterProvider} from "react-router-dom"
-
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.tsx";
+import "./index.css";
+import { store } from "./app/store";
+import { Provider } from "react-redux";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { ThemeProvider } from "@mui/material/styles";
+import theme from "./theme";
+import ErrorPage from "./pages/ErrorPage.tsx";
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <App />,
-    errorElement: <div>Not found</div>,
+    errorElement: <ErrorPage />,
   },
   {
-    path: '/about',
-    element: <div>About</div>
-  }
-])
+    path: "/about",
+    element: <div>About</div>,
+  },
+]);
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <Provider store={store}>
-    <RouterProvider router={router} />
+      <ThemeProvider theme={theme}>
+        <RouterProvider router={router} />
+      </ThemeProvider>
     </Provider>
-  </React.StrictMode>,
-)
+  </React.StrictMode>
+);
