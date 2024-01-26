@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useTheme } from "../ThemeContext";
 import { Link } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -15,6 +16,8 @@ import CloseIcon from "@mui/icons-material/Close";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { Button } from "@mui/material";
+import Brightness4Icon from "@mui/icons-material/Brightness4"; // Dark mode icon
+import Brightness7Icon from "@mui/icons-material/Brightness7"; // Light mode icon
 
 interface Props {
   window?: () => Window;
@@ -27,6 +30,8 @@ const navItems = [
 ];
 
 export default function DrawerAppBar(props: Props) {
+  const { currentTheme, toggleTheme } = useTheme();
+  console.log(currentTheme, toggleTheme);
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -102,8 +107,22 @@ export default function DrawerAppBar(props: Props) {
               </Button>
             ))}
           </Box>
+          <IconButton
+            edge="end"
+            color="inherit"
+            aria-label="mode"
+            onClick={toggleTheme}
+            sx={{ ml: 1 }}
+          >
+            {currentTheme === "dark" ? (
+              <Brightness7Icon />
+            ) : (
+              <Brightness4Icon />
+            )}
+          </IconButton>
         </Toolbar>
-      </AppBar>``
+      </AppBar>
+      ``
       <nav>
         <Drawer
           container={container}
