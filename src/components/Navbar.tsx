@@ -11,9 +11,10 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
+import { Button } from "@mui/material";
 
 interface Props {
   window?: () => Window;
@@ -30,26 +31,39 @@ export default function DrawerAppBar(props: Props) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
-    setMobileOpen((prevState) => !prevState);
+    setMobileOpen(!mobileOpen);
+  };
+
+  const handleNavItemClick = () => {
+    setMobileOpen(false);
   };
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
-      <Typography variant="h6" sx={{ my: 2 }}>
-        MUI
-      </Typography>
+    <Box>
+      <Box display="flex" justifyContent="flex-end" sx={{ p: 1 }}>
+        <IconButton onClick={handleDrawerToggle}>
+          <CloseIcon />
+        </IconButton>
+      </Box>
       <Divider />
       <List>
         {navItems.map((item) => (
           <ListItem key={item.title} disablePadding>
-            <ListItemButton sx={{ textAlign: "center" }}>
-              <Link
-                to={item.path}
-                style={{ textDecoration: "none", color: "inherit" }}
+            <Link
+              to={item.path}
+              style={{
+                textDecoration: "none",
+                color: "inherit",
+                width: "100%",
+              }}
+            >
+              <ListItemButton
+                sx={{ width: "100%" }}
+                onClick={handleNavItemClick} // Attach the click handler here
               >
                 <ListItemText primary={item.title} />
-              </Link>
-            </ListItemButton>
+              </ListItemButton>
+            </Link>
           </ListItem>
         ))}
       </List>
@@ -89,7 +103,7 @@ export default function DrawerAppBar(props: Props) {
             ))}
           </Box>
         </Toolbar>
-      </AppBar>
+      </AppBar>``
       <nav>
         <Drawer
           container={container}
