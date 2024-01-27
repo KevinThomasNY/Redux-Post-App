@@ -15,7 +15,7 @@ const Layout = ({ children }: LayoutProps) => {
         children ? (
           <>{children}</>
         ) : (
-          <Box sx={{ pt: 10 }}>
+          <Box sx={{ pt: 8 }}>
             <Outlet />
           </Box>
         )
