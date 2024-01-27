@@ -31,7 +31,6 @@ const navItems = [
 
 export default function DrawerAppBar(props: Props) {
   const { currentTheme, toggleTheme } = useTheme();
-  console.log(currentTheme, toggleTheme);
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
