@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import type { RootState } from "../../app/store";
 
 export interface Post {
   id: number;
@@ -26,5 +27,7 @@ const postsSlice = createSlice({
 });
 
 // export const {} = postsSlice.actions;
+
+export const selectAllPosts = (state: RootState) => state.posts.posts;
 
 export default postsSlice.reducer;
