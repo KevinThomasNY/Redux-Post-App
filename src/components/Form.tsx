@@ -1,4 +1,6 @@
 import { useState } from "react";
+import {useAppDispatch} from '../app/hooks'
+import {createPost} from '../features/posts/postsSlice'
 import { Box, Button, TextField, Typography } from "@mui/material";
 
 type FormData = {
@@ -8,6 +10,7 @@ type FormData = {
 
 const Form = () => {
   const [formData, setFormData] = useState<FormData>({ title: "", post: "" });
+  const dispatch = useAppDispatch()
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -16,6 +19,7 @@ const Form = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    dispatch(createPost(formData))
     setFormData({ title: "", post: "" });
   };
 
