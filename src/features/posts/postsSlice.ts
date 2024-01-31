@@ -24,11 +24,15 @@ const postsSlice = createSlice({
   reducers: {
     createPost: (state, action) => {
       state.posts.push(action.payload)
-    }
+    },
+    deletePost: (state, action) => {
+      const id = action.payload;
+      state.posts = state.posts.filter(post => post.id !== id);
+    }    
   },
 });
 
-export const {createPost} = postsSlice.actions;
+export const {createPost, deletePost} = postsSlice.actions;
 
 export const selectAllPosts = (state: RootState) => state.posts.posts;
 

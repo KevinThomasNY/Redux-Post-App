@@ -1,15 +1,19 @@
 import { useState } from "react";
-import {useAppDispatch} from '../app/hooks'
+import {useAppSelector, useAppDispatch} from '../app/hooks'
 import {createPost} from '../features/posts/postsSlice'
 import { Box, Button, TextField, Typography } from "@mui/material";
 
 type FormData = {
+  id: number;
   title: string;
-  post: string;
+  content: string;
 };
 
 const Form = () => {
-  const [formData, setFormData] = useState<FormData>({ title: "", post: "" });
+  const postsObject = useAppSelector((state) => state.posts);
+  const postsArray = postsObject.posts;
+  const length = postsArray.length + 1;
+  const [formData, setFormData] = useState<FormData>({id: length, title: "", content: "" });
   const dispatch = useAppDispatch()
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,7 +24,7 @@ const Form = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     dispatch(createPost(formData))
-    setFormData({ title: "", post: "" });
+    setFormData({id: 0, title: "", content: "" });
   };
 
   return (
@@ -51,8 +55,8 @@ const Form = () => {
         Post
       </Typography>
       <TextField
-        name="post"
-        value={formData.post}
+        name="content"
+        value={formData.content}
         onChange={handleChange}
         variant="outlined"
         multiline
