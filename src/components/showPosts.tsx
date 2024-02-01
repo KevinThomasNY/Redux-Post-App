@@ -1,13 +1,21 @@
+import { useNavigate } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../app/hooks";
 import { deletePost } from "../features/posts/postsSlice";
 import { Box, IconButton, Typography } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
+
 const ShowPosts = () => {
+  const navigate = useNavigate();
   const postsObject = useAppSelector((state) => state.posts);
   const dispatch = useAppDispatch();
   const postsArray = postsObject.posts;
+
+  const handleEdit = (id: number) => {
+    navigate(`/edit/${id}`)
+  };
 
   if (postsArray.length === 0) {
     return (
@@ -54,8 +62,20 @@ const ShowPosts = () => {
           <Box
             sx={{ position: "absolute", bottom: 0, right: 0, padding: "8px" }}
           >
-            <IconButton onClick={() => dispatch(deletePost(post.id))} aria-label="delete" size="small">
+            <IconButton
+              onClick={() => dispatch(deletePost(post.id))}
+              aria-label="delete"
+              size="small"
+            >
               <DeleteIcon fontSize="inherit" />
+            </IconButton>
+            <IconButton
+              onClick={() => handleEdit(post.id)}
+              size="small"
+              color="secondary"
+              aria-label="edit"
+            >
+              <EditIcon />
             </IconButton>
           </Box>
         </Card>

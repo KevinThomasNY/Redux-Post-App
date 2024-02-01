@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import Layout from "./Layout.tsx";
 import About from "./pages/About.tsx";
+import Edit from "./pages/Edit.tsx"
 import ErrorPage from "./pages/ErrorPage.tsx";
 import "./index.css";
 import { store } from "./app/store";
@@ -18,7 +19,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <App /> }, // Home route
       { path: 'about', element: <About /> }, // About route
-      // ... add other routes here
+      {path: 'edit/:id', element: <Edit />}
     ],
   },
   // ... potentially other top-level routes
