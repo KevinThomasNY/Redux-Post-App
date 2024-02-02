@@ -1,8 +1,11 @@
-
+// Home Page
+import Form from "./components/Form";
+import ShowPosts from "./components/showPosts";
 function App() {
   return (
     <>
-      <h1>Home</h1>
+      <Form/>
+      <ShowPosts/>
     </>
   );
 }
