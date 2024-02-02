@@ -9,6 +9,7 @@ export interface Post {
 
 export interface PostState {
   posts: Post[];
+  selectedPost: Post | null;
 }
 
 const initialState: PostState = {
@@ -16,6 +17,7 @@ const initialState: PostState = {
     { id: 1, title: "First Post!", content: "Hello!" },
     { id: 2, title: "Second Post", content: "More text" },
   ],
+  selectedPost: null,
 };
 
 const postsSlice = createSlice({
@@ -23,16 +25,20 @@ const postsSlice = createSlice({
   initialState,
   reducers: {
     createPost: (state, action) => {
-      state.posts.push(action.payload)
+      state.posts.push(action.payload);
     },
     deletePost: (state, action) => {
       const id = action.payload;
-      state.posts = state.posts.filter(post => post.id !== id);
-    }    
+      state.posts = state.posts.filter((post) => post.id !== id);
+    },
+    getSinglePost: (state, action) => {
+      const id = action.payload;
+      state.selectedPost = state.posts.find((post) => post.id === id) || null;
+    },
   },
 });
 
-export const {createPost, deletePost} = postsSlice.actions;
+export const { createPost, deletePost, getSinglePost } = postsSlice.actions;
 
 export const selectAllPosts = (state: RootState) => state.posts.posts;
 
