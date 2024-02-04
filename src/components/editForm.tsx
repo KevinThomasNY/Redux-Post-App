@@ -1,7 +1,13 @@
-import { useState } from "react";
-import {useAppSelector, useAppDispatch} from '../app/hooks'
-import {createPost} from '../features/posts/postsSlice'
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../app/hooks";
+import { editPost } from "../features/posts/postsSlice";
 import { Box, Button, TextField, Typography } from "@mui/material";
+interface Props {
+  id: number;
+  title: string | null;
+  content: string | null;
+}
 
 type FormData = {
   id: number;
@@ -9,12 +15,22 @@ type FormData = {
   content: string;
 };
 
-const Edit = () => {
-  const postsObject = useAppSelector((state) => state.posts);
-  const postsArray = postsObject.posts;
-  const length = postsArray.length + 1;
-  const [formData, setFormData] = useState<FormData>({id: length, title: "", content: "" });
-  const dispatch = useAppDispatch()
+const Edit = ({ id, title, content }: Props) => {
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState<FormData>({
+    id: id,
+    title: title || "",
+    content: content || "",
+  });
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    setFormData({
+      id: id,
+      title: title || "",
+      content: content || "",
+    });
+  }, [id, title, content]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -23,8 +39,9 @@ const Edit = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    dispatch(createPost(formData))
-    setFormData({id: 0, title: "", content: "" });
+    dispatch(editPost(formData));
+    setFormData({ id: 0, title: "", content: "" });
+    navigate("/");
   };
 
   return (

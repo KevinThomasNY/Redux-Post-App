@@ -35,10 +35,18 @@ const postsSlice = createSlice({
       const id = action.payload;
       state.selectedPost = state.posts.find((post) => post.id === id) || null;
     },
+    editPost: (state, action) => {
+      const { id, title, content } = action.payload;
+      const existingPost = state.posts.find((post) => post.id === id);
+      if (existingPost) {
+        existingPost.title = title;
+        existingPost.content = content;
+      }
+    }
   },
 });
 
-export const { createPost, deletePost, getSinglePost } = postsSlice.actions;
+export const { createPost, deletePost, getSinglePost, editPost } = postsSlice.actions;
 
 export const selectAllPosts = (state: RootState) => state.posts.posts;
 

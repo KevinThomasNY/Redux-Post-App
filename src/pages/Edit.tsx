@@ -8,20 +8,20 @@ type RouteParams = {
 };
 
 const Edit = () => {
-    
   const { id } = useParams<RouteParams>();
   const idAsNumber = parseInt(id || "0");
   const dispatch = useAppDispatch();
   const selectedPost = useAppSelector((state) => state.posts.selectedPost);
-  console.log(selectedPost);
+  const title = selectedPost?.title ?? null;
+  const content = selectedPost?.content ?? null;
 
   useEffect(() => {
     dispatch(getSinglePost(idAsNumber));
-  }, [dispatch, id]);
+  }, [dispatch, idAsNumber]);
 
   return (
     <>
-      <EditForm />
+      <EditForm title={title} content={content} id={idAsNumber} />
     </>
   );
 };
