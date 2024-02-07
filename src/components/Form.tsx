@@ -1,7 +1,7 @@
 import { useState } from "react";
-import {useAppSelector, useAppDispatch} from '../app/hooks'
-import {createPost} from '../features/posts/postsSlice'
-import { Box, Button, TextField, Typography } from "@mui/material";
+import { useAppSelector, useAppDispatch } from "../app/hooks";
+import { createPost } from "../features/posts/postsSlice";
+import { Box, Button, TextField, Tooltip, Typography } from "@mui/material";
 
 type FormData = {
   id: number;
@@ -13,8 +13,12 @@ const Form = () => {
   const postsObject = useAppSelector((state) => state.posts);
   const postsArray = postsObject.posts;
   const length = postsArray.length + 1;
-  const [formData, setFormData] = useState<FormData>({id: length, title: "", content: "" });
-  const dispatch = useAppDispatch()
+  const [formData, setFormData] = useState<FormData>({
+    id: length,
+    title: "",
+    content: "",
+  });
+  const dispatch = useAppDispatch();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -23,8 +27,8 @@ const Form = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    dispatch(createPost(formData))
-    setFormData({id: 0, title: "", content: "" });
+    dispatch(createPost(formData));
+    setFormData({ id: 0, title: "", content: "" });
   };
 
   return (
@@ -66,6 +70,7 @@ const Form = () => {
       <Button
         color="secondary"
         type="submit"
+        disabled={!formData.title || !formData.content}
         style={{ marginTop: "20px", alignSelf: "center" }}
         sx={{ width: "25%" }}
       >
