@@ -44,13 +44,17 @@ const Edit = ({ id, title, content }: Props) => {
     navigate("/");
   };
 
+  const handleCancel = () => {
+    navigate("/");
+  }
+
   return (
     <Box
       component="form"
       onSubmit={handleSubmit}
       display="flex"
       flexDirection="column"
-      alignItems="flex-start"
+      alignItems="center"
       width="50%"
       maxWidth={"700px"}
       bgcolor="background.paper"
@@ -80,14 +84,14 @@ const Edit = ({ id, title, content }: Props) => {
         rows={4}
         fullWidth
       />
-      <Button
-        color="secondary"
-        type="submit"
-        style={{ marginTop: "20px", alignSelf: "center" }}
-        sx={{ width: "25%" }}
-      >
-        Submit
-      </Button>
+      <Box display="flex" justifyContent="center" gap={4}>
+        <Button color="primary" onClick={handleCancel} sx={{ mt: 2, px: 4, pt: 1}}>
+          Cancel
+        </Button>
+        <Button color="secondary" type="submit" sx={{ mt: 2, px: 4, py: 1 }}>
+          Submit
+        </Button>
+      </Box>
     </Box>
   );
 };
