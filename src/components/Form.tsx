@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAppSelector, useAppDispatch } from "../app/hooks";
 import { createPost } from "../features/posts/postsSlice";
-import { Box, Button, TextField, Tooltip, Typography } from "@mui/material";
+import { Box, Button, TextField, Typography } from "@mui/material";
 
 type FormData = {
   id: number;
