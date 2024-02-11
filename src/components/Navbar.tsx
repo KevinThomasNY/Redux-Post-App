@@ -25,8 +25,8 @@ interface Props {
 
 const drawerWidth = 240;
 const navItems = [
-  { title: "Home", path: "/" },
-  { title: "About", path: "/about" },
+  { title: "Post", path: "/" },
+  { title: "Todo", path: "/todo" },
 ];
 
 export default function DrawerAppBar(props: Props) {
@@ -63,7 +63,7 @@ export default function DrawerAppBar(props: Props) {
             >
               <ListItemButton
                 sx={{ width: "100%" }}
-                onClick={handleNavItemClick} // Attach the click handler here
+                onClick={handleNavItemClick} 
               >
                 <ListItemText primary={item.title} />
               </ListItemButton>
@@ -92,7 +92,7 @@ export default function DrawerAppBar(props: Props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Redux Post Application
+            Redux Post & Todo Application
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {navItems.map((item) => (

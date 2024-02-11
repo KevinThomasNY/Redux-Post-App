@@ -18,8 +18,8 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       { index: true, element: <App /> }, // Home route
-      { path: 'about', element: <About /> }, // About route
-      {path: 'edit/:id', element: <Edit />}
+      { path: 'todo', element: <About /> }, // About route
+      {path: 'post/edit/:id', element: <Edit />}
     ],
   },
   // ... potentially other top-level routes

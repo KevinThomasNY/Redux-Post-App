@@ -14,7 +14,7 @@ const ShowPosts = () => {
   const postsArray = postsObject.posts;
 
   const handleEdit = (id: number) => {
-    navigate(`/edit/${id}`)
+    navigate(`post/edit/${id}`)
   };
 
   if (postsArray.length === 0) {
