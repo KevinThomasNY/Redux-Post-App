@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import Layout from "./Layout.tsx";
-import About from "./pages/About.tsx";
+import Todo from "./pages/Todo.tsx";
 import Edit from "./pages/Edit.tsx"
 import ErrorPage from "./pages/ErrorPage.tsx";
 import "./index.css";
@@ -18,7 +18,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       { index: true, element: <App /> }, // Home route
-      { path: 'todo', element: <About /> }, // About route
+      { path: 'todo', element: <Todo /> }, // About route
       {path: 'post/edit/:id', element: <Edit />}
     ],
   },

@@ -1,4 +1,4 @@
-// Home Page
+// Home Page => Post 
 import Form from "./components/Form";
 import ShowPosts from "./components/showPosts";
 function App() {

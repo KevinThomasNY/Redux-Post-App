@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from "../app/hooks"
 import { fetchTodos } from "../features/todos/todosSlice"
 import { selectAllTodos } from "../features/todos/todosSlice"
 
-const About = () => {
+const Todo = () => {
   const dispatch = useAppDispatch()
   const todos = useAppSelector(selectAllTodos)
   console.log(todos)
@@ -15,4 +15,4 @@ const About = () => {
   )
 }
 
-export default About
+export default Todo
