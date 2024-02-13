@@ -2,12 +2,12 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../app/hooks";
 import { getSinglePost } from "../features/posts/postsSlice";
-import EditForm from "../components/editForm";
+import PostEditForm from "../components/PostEditForm";
 type RouteParams = {
   id: string;
 };
 
-const Edit = () => {
+const PostEdit = () => {
   const { id } = useParams<RouteParams>();
   const idAsNumber = parseInt(id || "0");
   const dispatch = useAppDispatch();
@@ -21,9 +21,9 @@ const Edit = () => {
 
   return (
     <>
-      <EditForm title={title} content={content} id={idAsNumber} />
+      <PostEditForm title={title} content={content} id={idAsNumber} />
     </>
   );
 };
 
-export default Edit;
+export default PostEdit;

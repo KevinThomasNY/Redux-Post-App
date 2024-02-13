@@ -1,10 +1,10 @@
 // Home Page => Post 
-import Form from "./components/Form";
-import ShowPosts from "./components/showPosts";
+import PostForm from "./components/PostForm";
+import ShowPosts from "./components/ShowPosts";
 function App() {
   return (
     <>
-      <Form/>
+      <PostForm/>
       <ShowPosts/>
     </>
   );

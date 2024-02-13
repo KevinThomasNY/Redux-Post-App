@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import Layout from "./Layout.tsx";
 import Todo from "./pages/Todo.tsx";
-import Edit from "./pages/Edit.tsx"
+import PostEdit from "./pages/postEdit.tsx"
 import ErrorPage from "./pages/ErrorPage.tsx";
 import "./index.css";
 import { store } from "./app/store";
@@ -19,7 +19,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <App /> }, // Home route
       { path: 'todo', element: <Todo /> }, // About route
-      {path: 'post/edit/:id', element: <Edit />}
+      {path: 'post/edit/:id', element: <PostEdit />}
     ],
   },
   // ... potentially other top-level routes
