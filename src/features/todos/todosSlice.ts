@@ -17,11 +17,12 @@ const initialState: TodoState = {
   todos: [],
   status: "idle",
   error: null,
-};
+};``
 
 export const fetchTodos = createAsyncThunk("todos/fetchTodos", async () => {
   const response = await fetch("https://jsonplaceholder.typicode.com/todos");
-  return response.json();
+  const todos = await response.json();
+  return todos.slice(0, 5);
 });
 
 const todosSlice = createSlice({
@@ -46,4 +47,5 @@ const todosSlice = createSlice({
 });
 
 export const selectAllTodos = (state: RootState) => state.todos.todos;
+export const selectTodosStatus = (state: RootState) => state.todos.status;
 export const todosReducer = todosSlice.reducer;
