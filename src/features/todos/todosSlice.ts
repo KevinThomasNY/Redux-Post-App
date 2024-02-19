@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
 
 export interface Todo {
@@ -22,13 +22,18 @@ const initialState: TodoState = {
 export const fetchTodos = createAsyncThunk("todos/fetchTodos", async () => {
   const response = await fetch("https://jsonplaceholder.typicode.com/todos");
   const todos = await response.json();
-  return todos.slice(0, 5);
+  return todos.splice(0, 5);
 });
 
 const todosSlice = createSlice({
   name: "todos",
   initialState,
-  reducers: {},
+  reducers: {
+    addTodo: (state, action: PayloadAction<Todo>) => {
+      const newTodo = action.payload;
+      state.todos.push(newTodo)
+    }
+  },
   extraReducers(builder) {
     builder
       .addCase(fetchTodos.pending, (state) => {
@@ -48,4 +53,5 @@ const todosSlice = createSlice({
 
 export const selectAllTodos = (state: RootState) => state.todos.todos;
 export const selectTodosStatus = (state: RootState) => state.todos.status;
+export const {addTodo} = todosSlice.actions;
 export const todosReducer = todosSlice.reducer;
