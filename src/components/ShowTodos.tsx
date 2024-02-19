@@ -71,14 +71,13 @@ const ShowTodos = () => {
             sx={{ position: "absolute", bottom: 0, right: 0, padding: "8px" }}
           >
             <IconButton
-              onClick={() => console.log("delete")}
               aria-label="delete"
               size="small"
             >
               <DeleteIcon fontSize="inherit" />
             </IconButton>
             <IconButton
-              onClick={() => handleEdit(todo.id)}
+              onClick={() => handleEdit(todo.id!)}
               size="small"
               color="secondary"
               aria-label="edit"
