@@ -2,18 +2,12 @@ import { useState } from "react";
 import { useAppSelector, useAppDispatch } from "../app/hooks";
 import { selectAllTodos, addTodo } from "../features/todos/todosSlice";
 import { Box, Button, TextField, Typography } from "@mui/material";
-
-type FormData = {
-  id: number
-  userId: number;
-  title: string;
-  completed: boolean;
-};
+import { Todo } from "../features/todos/todosSlice";
 
 const TodoForm = () => {
   const todos = useAppSelector(selectAllTodos);
   const [initalId, setInitalId] = useState<number>(todos.length + 1);
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState<Todo>({
     id: initalId,
     userId: 1,
     title: "",

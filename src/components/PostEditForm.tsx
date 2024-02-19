@@ -3,21 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../app/hooks";
 import { editPost } from "../features/posts/postsSlice";
 import { Box, Button, TextField, Typography } from "@mui/material";
-interface Props {
-  id: number;
-  title: string | null;
-  content: string | null;
-}
+import { Post } from "../features/posts/postsSlice";
 
-type FormData = {
-  id: number;
-  title: string;
-  content: string;
-};
-
-const PostEditForm = ({ id, title, content }: Props) => {
+const PostEditForm = ({ id, title, content }: Post) => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState<Post>({
     id: id,
     title: title || "",
     content: content || "",

@@ -2,18 +2,13 @@ import { useState } from "react";
 import { useAppSelector, useAppDispatch } from "../app/hooks";
 import { createPost } from "../features/posts/postsSlice";
 import { Box, Button, TextField, Typography } from "@mui/material";
-
-type FormData = {
-  id: number;
-  title: string;
-  content: string;
-};
+import { Post } from "../features/posts/postsSlice";
 
 const PostForm = () => {
   const postsObject = useAppSelector((state) => state.posts);
   const postsArray = postsObject.posts;
   const length = postsArray.length + 1;
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState<Post>({
     id: length,
     title: "",
     content: "",
