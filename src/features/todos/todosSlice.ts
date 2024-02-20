@@ -32,6 +32,10 @@ const todosSlice = createSlice({
     addTodo: (state, action: PayloadAction<Todo>) => {
       const newTodo = action.payload;
       state.todos.push(newTodo)
+    },
+    deleteTodo :(state, action: PayloadAction<number>) => {
+      const id = action.payload;
+      state.todos = state.todos.filter((todo) => todo.id !== id)
     }
   },
   extraReducers(builder) {
@@ -53,5 +57,5 @@ const todosSlice = createSlice({
 
 export const selectAllTodos = (state: RootState) => state.todos.todos;
 export const selectTodosStatus = (state: RootState) => state.todos.status;
-export const {addTodo} = todosSlice.actions;
+export const {addTodo, deleteTodo} = todosSlice.actions;
 export const todosReducer = todosSlice.reducer;

@@ -4,6 +4,7 @@ import {
   fetchTodos,
   selectAllTodos,
   selectTodosStatus,
+  deleteTodo,
 } from "../features/todos/todosSlice";
 import { useNavigate } from "react-router-dom";
 import { Box, Card, CardContent, IconButton, Typography } from "@mui/material";
@@ -17,10 +18,10 @@ const ShowTodos = () => {
   const status = useAppSelector(selectTodosStatus);
 
   useEffect(() => {
-    if (status === "idle") {
+    if (status === "idle" && todos.length === 0) {
       dispatch(fetchTodos());
     }
-  }, [dispatch, status]);
+  }, [dispatch, status, todos]);
 
   const handleEdit = (id: number) => {
     navigate(`post/edit/${id}`);
@@ -64,13 +65,14 @@ const ShowTodos = () => {
             position: "relative",
           }}
         >
-          <CardContent sx={{ paddingBottom: "16px" }}>
+        <CardContent sx={{ paddingBottom: "16px" }}>
             <Typography variant="h6">{todo.title}</Typography>
           </CardContent>
           <Box
             sx={{ position: "absolute", bottom: 0, right: 0, padding: "8px" }}
           >
             <IconButton
+              onClick={() => dispatch(deleteTodo(todo.id))}
               aria-label="delete"
               size="small"
             >
