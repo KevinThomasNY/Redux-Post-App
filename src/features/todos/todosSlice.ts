@@ -10,11 +10,13 @@ export interface Todo {
 
 export interface TodoState {
   todos: Todo[];
+  selectedTodo: Todo | null;
   status: "idle" | "loading" | "succeeded" | "failed";
   error: string | null;
 }
 const initialState: TodoState = {
   todos: [],
+  selectedTodo: null,
   status: "idle",
   error: null,
 };``
@@ -36,6 +38,19 @@ const todosSlice = createSlice({
     deleteTodo :(state, action: PayloadAction<number>) => {
       const id = action.payload;
       state.todos = state.todos.filter((todo) => todo.id !== id)
+    },
+    getSingleTodo: (state, action: PayloadAction<number>) => {
+      const id = action.payload;
+      state.selectedTodo = state.todos.find((todo) => todo.id === id) || null;
+    },
+    editTodo: (state, action: PayloadAction<Todo>) => {
+      const {id, title, userId, completed} = action.payload;
+      const existingTodo = state.todos.find((todo) => todo.id === id);
+      if (existingTodo) {
+        existingTodo.title = title;
+        existingTodo.userId = userId;
+        existingTodo.completed = completed;
+      }
     }
   },
   extraReducers(builder) {
@@ -57,5 +72,5 @@ const todosSlice = createSlice({
 
 export const selectAllTodos = (state: RootState) => state.todos.todos;
 export const selectTodosStatus = (state: RootState) => state.todos.status;
-export const {addTodo, deleteTodo} = todosSlice.actions;
+export const {addTodo, deleteTodo, getSingleTodo, editTodo} = todosSlice.actions;
 export const todosReducer = todosSlice.reducer;

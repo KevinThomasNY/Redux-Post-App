@@ -24,7 +24,7 @@ const ShowTodos = () => {
   }, [dispatch, status, todos]);
 
   const handleEdit = (id: number) => {
-    navigate(`post/edit/${id}`);
+    navigate(`edit/${id}`);
   };
 
   if (todos.length === 0) {

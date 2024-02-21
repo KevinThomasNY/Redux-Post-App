@@ -4,6 +4,7 @@ import App from "./App.tsx";
 import Layout from "./Layout.tsx";
 import Todo from "./pages/Todo.tsx";
 import PostEdit from "./pages/postEdit.tsx";
+import TodoEdit from "./pages/todoEdit.tsx";
 import ErrorPage from "./pages/ErrorPage.tsx";
 import "./index.css";
 import { store } from "./app/store";
@@ -18,18 +19,19 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       { index: true, element: <App /> }, // Post route
-      { path: "todo", element: <Todo /> }, // Todo route
       { path: "post/edit/:id", element: <PostEdit /> },
+      { path: "todo", element: <Todo /> }, // Todo route
+      { path: "todo/edit/:id", element: <TodoEdit /> },
     ],
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
+<React.StrictMode>
     <Provider store={store}>
       <ThemeProvider>
         <RouterProvider router={router} />
       </ThemeProvider>
     </Provider>
-  </React.StrictMode>
+</React.StrictMode>
 );

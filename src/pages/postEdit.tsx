@@ -12,8 +12,8 @@ const PostEdit = () => {
   const idAsNumber = parseInt(id || "0");
   const dispatch = useAppDispatch();
   const selectedPost = useAppSelector((state) => state.posts.selectedPost);
-  const title = selectedPost?.title ?? null;
-  const content = selectedPost?.content ?? null;
+  const title = selectedPost?.title || "";
+  const content = selectedPost?.content || "";
 
   useEffect(() => {
     dispatch(getSinglePost(idAsNumber));
