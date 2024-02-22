@@ -51,6 +51,13 @@ const todosSlice = createSlice({
         existingTodo.userId = userId;
         existingTodo.completed = completed;
       }
+    },
+    setCompleted: (state, action: PayloadAction<number>) => {
+      const id = action.payload;
+      const existingTodo = state.todos.find((todo) => todo.id === id);
+      if(existingTodo){
+        existingTodo.completed = !existingTodo.completed;
+      }
     }
   },
   extraReducers(builder) {
@@ -72,5 +79,5 @@ const todosSlice = createSlice({
 
 export const selectAllTodos = (state: RootState) => state.todos.todos;
 export const selectTodosStatus = (state: RootState) => state.todos.status;
-export const {addTodo, deleteTodo, getSingleTodo, editTodo} = todosSlice.actions;
+export const {addTodo, deleteTodo, getSingleTodo, editTodo, setCompleted} = todosSlice.actions;
 export const todosReducer = todosSlice.reducer;

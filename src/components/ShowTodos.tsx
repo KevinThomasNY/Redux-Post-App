@@ -5,6 +5,7 @@ import {
   selectAllTodos,
   selectTodosStatus,
   deleteTodo,
+  setCompleted,
 } from "../features/todos/todosSlice";
 import { useNavigate } from "react-router-dom";
 import { Box, Card, CardContent, IconButton, Typography } from "@mui/material";
@@ -67,17 +68,29 @@ const ShowTodos = () => {
           }}
         >
           <CardContent sx={{ marginBottom: "24px", wordBreak: "break-word" }}>
-            <Typography variant="h6">{todo.title}</Typography>
+            <Typography
+              variant="h6"
+              sx={{ textDecoration: todo.completed ? "line-through" : "none" }}
+            >
+              {todo.title}
+            </Typography>
           </CardContent>
           <Box
             sx={{ position: "absolute", bottom: 0, right: 0, padding: "8px" }}
           >
             <IconButton
-              onClick={() => dispatch(deleteTodo(todo.id))}
+              onClick={() => dispatch(setCompleted(todo.id))}
               aria-label="complete"
               size="medium"
             >
               <CheckIcon color="primary" />
+            </IconButton>
+            <IconButton
+              onClick={() => handleEdit(todo.id)}
+              size="small"
+              aria-label="edit"
+            >
+              <EditIcon color="secondary" />
             </IconButton>
             <IconButton
               onClick={() => dispatch(deleteTodo(todo.id))}
@@ -85,13 +98,6 @@ const ShowTodos = () => {
               size="small"
             >
               <DeleteIcon color="error" />
-            </IconButton>
-            <IconButton
-              onClick={() => handleEdit(todo.id!)}
-              size="small"
-              aria-label="edit"
-            >
-              <EditIcon color="secondary" />
             </IconButton>
           </Box>
         </Card>
