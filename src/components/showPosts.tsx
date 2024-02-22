@@ -63,18 +63,18 @@ const ShowPosts = () => {
             sx={{ position: "absolute", bottom: 0, right: 0, padding: "8px" }}
           >
             <IconButton
-              onClick={() => dispatch(deletePost(post.id))}
-              aria-label="delete"
-              size="small"
-            >
-              <DeleteIcon color="error" />
-            </IconButton>
-            <IconButton
               onClick={() => handleEdit(post.id)}
               size="small"
               aria-label="edit"
             >
               <EditIcon color="secondary" />
+            </IconButton>
+            <IconButton
+              onClick={() => dispatch(deletePost(post.id))}
+              aria-label="delete"
+              size="small"
+            >
+              <DeleteIcon color="error" />
             </IconButton>
           </Box>
         </Card>
