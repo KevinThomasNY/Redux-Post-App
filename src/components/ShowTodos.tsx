@@ -65,7 +65,7 @@ const ShowTodos = () => {
             position: "relative",
           }}
         >
-        <CardContent sx={{ paddingBottom: "16px" }}>
+        <CardContent sx={{ paddingBottom: "32px" }}>
             <Typography variant="h6">{todo.title}</Typography>
           </CardContent>
           <Box

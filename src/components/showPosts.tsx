@@ -55,7 +55,7 @@ const ShowPosts = () => {
             position: "relative",
           }}
         >
-          <CardContent sx={{ paddingBottom: "16px" }}>
+          <CardContent sx={{ paddingBottom: "32px" }}>
             <Typography variant="h5">{post.title}</Typography>
             <Typography variant="body2">{post.content}</Typography>
           </CardContent>
