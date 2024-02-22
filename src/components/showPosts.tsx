@@ -14,7 +14,7 @@ const ShowPosts = () => {
   const postsArray = postsObject.posts;
 
   const handleEdit = (id: number) => {
-    navigate(`post/edit/${id}`)
+    navigate(`post/edit/${id}`);
   };
 
   if (postsArray.length === 0) {
@@ -55,7 +55,7 @@ const ShowPosts = () => {
             position: "relative",
           }}
         >
-          <CardContent sx={{ paddingBottom: "32px" }}>
+          <CardContent sx={{ marginBottom: "24px", wordBreak: "break-word" }}>
             <Typography variant="h5">{post.title}</Typography>
             <Typography variant="body2">{post.content}</Typography>
           </CardContent>
@@ -67,15 +67,14 @@ const ShowPosts = () => {
               aria-label="delete"
               size="small"
             >
-              <DeleteIcon fontSize="inherit" />
+              <DeleteIcon color="error" />
             </IconButton>
             <IconButton
               onClick={() => handleEdit(post.id)}
               size="small"
-              color="secondary"
               aria-label="edit"
             >
-              <EditIcon />
+              <EditIcon color="secondary" />
             </IconButton>
           </Box>
         </Card>

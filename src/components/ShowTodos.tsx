@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { Box, Card, CardContent, IconButton, Typography } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
+import CheckIcon from "@mui/icons-material/Check";
 
 const ShowTodos = () => {
   const navigate = useNavigate();
@@ -65,7 +66,7 @@ const ShowTodos = () => {
             position: "relative",
           }}
         >
-        <CardContent sx={{ paddingBottom: "32px" }}>
+          <CardContent sx={{ marginBottom: "24px", wordBreak: "break-word" }}>
             <Typography variant="h6">{todo.title}</Typography>
           </CardContent>
           <Box
@@ -73,18 +74,24 @@ const ShowTodos = () => {
           >
             <IconButton
               onClick={() => dispatch(deleteTodo(todo.id))}
+              aria-label="complete"
+              size="medium"
+            >
+              <CheckIcon color="primary" />
+            </IconButton>
+            <IconButton
+              onClick={() => dispatch(deleteTodo(todo.id))}
               aria-label="delete"
               size="small"
             >
-              <DeleteIcon fontSize="inherit" />
+              <DeleteIcon color="error" />
             </IconButton>
             <IconButton
               onClick={() => handleEdit(todo.id!)}
               size="small"
-              color="secondary"
               aria-label="edit"
             >
-              <EditIcon />
+              <EditIcon color="secondary" />
             </IconButton>
           </Box>
         </Card>
