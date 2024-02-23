@@ -2,7 +2,7 @@
 
 ## Overview
 
-This React application demonstrates the effective use of Redux Toolkit for state management, incorporating CRUD functionality for both posts and todos. It seamlessly integrates Material-UI for a polished user interface and utilizes the Context API to provide a customizable light/dark mode experience.
+This React application demonstrates the effective use of Redux Toolkit for global state management, incorporating CRUD functionality for both posts and todos. It seamlessly integrates Material-UI for a polished user interface and utilizes the Context API to provide a customizable light/dark mode experience.
 
 ## Key Features
 
@@ -12,7 +12,7 @@ This React application demonstrates the effective use of Redux Toolkit for state
 
 * **Todo Management:**
     * **Fetching Todos:** The application uses `createAsyncThunk` to asynchronously fetch todos from [JSONPlaceholder](https://jsonplaceholder.typicode.com/todos). The todos slice handles the async states to update the UI accordingly.
-    * Add, delete, and mark todos as complete.
+    * Create, read, update, delete, and mark todos as complete.
 
 * **Theme Customization:**
     * Switch between light and dark modes using the Context API.
