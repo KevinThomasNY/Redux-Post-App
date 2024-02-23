@@ -1,30 +1,28 @@
-# React + TypeScript + Vite
+# Redux Post/Todo App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+This React application demonstrates the effective use of Redux Toolkit for state management, incorporating CRUD functionality for both posts and todos. It seamlessly integrates Material-UI for a polished user interface and utilizes the Context API to provide a customizable light/dark mode experience.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Key Features
 
-## Expanding the ESLint configuration
+* **Post Management:**
+    * Create, read, update, and delete posts.
+    * Hardcoded initial post data for demonstration purposes.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+* **Todo Management:**
+    * **Fetching Todos:** The application uses `createAsyncThunk` to asynchronously fetch todos from [JSONPlaceholder](https://jsonplaceholder.typicode.com/todos). The todos slice handles the async states to update the UI accordingly.
+    * Add, delete, and mark todos as complete.
 
-- Configure the top-level `parserOptions` property like this:
+* **Theme Customization:**
+    * Switch between light and dark modes using the Context API.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+* **Responsive Design:**
+    * Material-UI components ensure a user-friendly experience across devices.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Technologies Used
+
+- **[React](https://reactjs.org/):** Core frontend library.
+- **[Redux Toolkit](https://redux-toolkit.js.org/):** Streamlines Redux setup and simplifies global state management.
+- **[Material-UI (MUI)](https://mui.com/):** Versatile React component library for building attractive UIs.
+- **[JSONPlaceholder](https://jsonplaceholder.typicode.com/):** Provides sample data for todo demonstration.
